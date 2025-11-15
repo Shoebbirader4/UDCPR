@@ -1,0 +1,314 @@
+{
+  "regions": [
+    {
+      "name": "Konkan",
+      "districts": [
+        {
+          "name": "Mumbai City",
+          "planningAuthority": "MCGM (Municipal Corporation of Greater Mumbai)",
+          "type": "Municipal Corporation",
+          "population": "3,085,411",
+          "area": "157.79 sq km",
+          "specialZones": ["Heritage", "Coastal", "High-Density Urban"]
+        },
+        {
+          "name": "Mumbai Suburban",
+          "planningAuthority": "MCGM",
+          "type": "Municipal Corporation",
+          "population": "9,356,962",
+          "area": "446 sq km",
+          "specialZones": ["Coastal", "High-Density Urban", "MMRDA"]
+        },
+        {
+          "name": "Thane",
+          "planningAuthority": "TMC / MMRDA",
+          "type": "Municipal Corporation",
+          "population": "11,060,148",
+          "area": "4,214 sq km",
+          "specialZones": ["MMRDA", "Hill Station", "Tribal"]
+        },
+        {
+          "name": "Palghar",
+          "planningAuthority": "PMC / MMRDA",
+          "type": "Mixed",
+          "population": "2,990,116",
+          "area": "2,990 sq km",
+          "specialZones": ["Coastal", "Tribal", "MMRDA"]
+        },
+        {
+          "name": "Raigad",
+          "planningAuthority": "CIDCO / Local Bodies",
+          "type": "Mixed",
+          "population": "2,634,200",
+          "area": "7,152 sq km",
+          "specialZones": ["Coastal", "Hill Station", "CIDCO"]
+        },
+        {
+          "name": "Ratnagiri",
+          "planningAuthority": "RMC / Local Bodies",
+          "type": "Municipal Council",
+          "population": "1,615,069",
+          "area": "8,208 sq km",
+          "specialZones": ["Coastal", "CRZ", "Konkan"]
+        },
+        {
+          "name": "Sindhudurg",
+          "planningAuthority": "Local Bodies",
+          "type": "Municipal Council",
+          "population": "849,651",
+          "area": "5,207 sq km",
+          "specialZones": ["Coastal", "CRZ", "Tourism"]
+        }
+      ]
+    },
+    {
+      "name": "Pune",
+      "districts": [
+        {
+          "name": "Pune",
+          "planningAuthority": "PMC / PMRDA",
+          "type": "Municipal Corporation",
+          "population": "9,429,408",
+          "area": "15,642 sq km",
+          "specialZones": ["PMRDA", "IT Hub", "Hill Station"]
+        },
+        {
+          "name": "Satara",
+          "planningAuthority": "SMC / Local Bodies",
+          "type": "Municipal Council",
+          "population": "3,003,741",
+          "area": "10,480 sq km",
+          "specialZones": ["Hill Station", "Agricultural"]
+        },
+        {
+          "name": "Sangli",
+          "planningAuthority": "SMC / Local Bodies",
+          "type": "Municipal Corporation",
+          "population": "2,822,143",
+          "area": "8,572 sq km",
+          "specialZones": ["Agricultural", "Industrial"]
+        },
+        {
+          "name": "Kolhapur",
+          "planningAuthority": "KMC / Local Bodies",
+          "type": "Municipal Corporation",
+          "population": "3,876,001",
+          "area": "7,685 sq km",
+          "specialZones": ["Industrial", "Agricultural"]
+        },
+        {
+          "name": "Solapur",
+          "planningAuthority": "SMC / Local Bodies",
+          "type": "Municipal Corporation",
+          "population": "4,317,756",
+          "area": "14,895 sq km",
+          "specialZones": ["Industrial", "Drought-Prone"]
+        }
+      ]
+    },
+    {
+      "name": "Nashik",
+      "districts": [
+        {
+          "name": "Nashik",
+          "planningAuthority": "NMC / NMRDA",
+          "type": "Municipal Corporation",
+          "population": "6,107,187",
+          "area": "15,530 sq km",
+          "specialZones": ["NMRDA", "Industrial", "Wine Region"]
+        },
+        {
+          "name": "Dhule",
+          "planningAuthority": "DMC / Local Bodies",
+          "type": "Municipal Council",
+          "population": "2,050,862",
+          "area": "8,063 sq km",
+          "specialZones": ["Tribal", "Agricultural"]
+        },
+        {
+          "name": "Nandurbar",
+          "planningAuthority": "Local Bodies",
+          "type": "Municipal Council",
+          "population": "1,648,295",
+          "area": "5,034 sq km",
+          "specialZones": ["Tribal", "Forest"]
+        },
+        {
+          "name": "Jalgaon",
+          "planningAuthority": "JMC / Local Bodies",
+          "type": "Municipal Corporation",
+          "population": "4,229,917",
+          "area": "11,765 sq km",
+          "specialZones": ["Agricultural", "Industrial"]
+        }
+      ]
+    },
+    {
+      "name": "Aurangabad",
+      "districts": [
+        {
+          "name": "Aurangabad",
+          "planningAuthority": "AMC / AUDA",
+          "type": "Municipal Corporation",
+          "population": "3,701,282",
+          "area": "10,107 sq km",
+          "specialZones": ["AUDA", "Heritage", "Industrial"]
+        },
+        {
+          "name": "Jalna",
+          "planningAuthority": "JMC / Local Bodies",
+          "type": "Municipal Council",
+          "population": "1,959,046",
+          "area": "7,718 sq km",
+          "specialZones": ["Agricultural"]
+        },
+        {
+          "name": "Beed",
+          "planningAuthority": "BMC / Local Bodies",
+          "type": "Municipal Council",
+          "population": "2,585,049",
+          "area": "10,693 sq km",
+          "specialZones": ["Drought-Prone", "Agricultural"]
+        },
+        {
+          "name": "Latur",
+          "planningAuthority": "LMC / Local Bodies",
+          "type": "Municipal Corporation",
+          "population": "2,454,196",
+          "area": "7,157 sq km",
+          "specialZones": ["Drought-Prone", "Agricultural"]
+        },
+        {
+          "name": "Osmanabad",
+          "planningAuthority": "OMC / Local Bodies",
+          "type": "Municipal Council",
+          "population": "1,657,576",
+          "area": "7,569 sq km",
+          "specialZones": ["Drought-Prone", "Agricultural"]
+        },
+        {
+          "name": "Nanded",
+          "planningAuthority": "NMC / Local Bodies",
+          "type": "Municipal Corporation",
+          "population": "3,361,292",
+          "area": "10,528 sq km",
+          "specialZones": ["Religious", "Agricultural"]
+        },
+        {
+          "name": "Parbhani",
+          "planningAuthority": "PMC / Local Bodies",
+          "type": "Municipal Council",
+          "population": "1,836,086",
+          "area": "6,511 sq km",
+          "specialZones": ["Agricultural"]
+        },
+        {
+          "name": "Hingoli",
+          "planningAuthority": "Local Bodies",
+          "type": "Municipal Council",
+          "population": "1,177,345",
+          "area": "4,827 sq km",
+          "specialZones": ["Agricultural", "Drought-Prone"]
+        }
+      ]
+    },
+    {
+      "name": "Nagpur",
+      "districts": [
+        {
+          "name": "Nagpur",
+          "planningAuthority": "NMC / NMRDA",
+          "type": "Municipal Corporation",
+          "population": "4,653,570",
+          "area": "9,892 sq km",
+          "specialZones": ["NMRDA", "MIHAN", "Industrial"]
+        },
+        {
+          "name": "Wardha",
+          "planningAuthority": "WMC / Local Bodies",
+          "type": "Municipal Council",
+          "population": "1,300,774",
+          "area": "6,309 sq km",
+          "specialZones": ["Agricultural", "Heritage"]
+        },
+        {
+          "name": "Bhandara",
+          "planningAuthority": "BMC / Local Bodies",
+          "type": "Municipal Council",
+          "population": "1,200,334",
+          "area": "3,890 sq km",
+          "specialZones": ["Forest", "Tribal"]
+        },
+        {
+          "name": "Gondia",
+          "planningAuthority": "GMC / Local Bodies",
+          "type": "Municipal Council",
+          "population": "1,322,507",
+          "area": "5,431 sq km",
+          "specialZones": ["Forest", "Tribal"]
+        },
+        {
+          "name": "Chandrapur",
+          "planningAuthority": "CMC / Local Bodies",
+          "type": "Municipal Corporation",
+          "population": "2,204,307",
+          "area": "11,443 sq km",
+          "specialZones": ["Mining", "Forest", "Tribal"]
+        },
+        {
+          "name": "Gadchiroli",
+          "planningAuthority": "Local Bodies",
+          "type": "Municipal Council",
+          "population": "1,072,942",
+          "area": "14,412 sq km",
+          "specialZones": ["Tribal", "Forest", "Naxal-Affected"]
+        }
+      ]
+    },
+    {
+      "name": "Amravati",
+      "districts": [
+        {
+          "name": "Amravati",
+          "planningAuthority": "AMC / Local Bodies",
+          "type": "Municipal Corporation",
+          "population": "2,888,445",
+          "area": "12,235 sq km",
+          "specialZones": ["Agricultural", "Industrial"]
+        },
+        {
+          "name": "Akola",
+          "planningAuthority": "AMC / Local Bodies",
+          "type": "Municipal Corporation",
+          "population": "1,813,906",
+          "area": "5,431 sq km",
+          "specialZones": ["Agricultural", "Cotton Belt"]
+        },
+        {
+          "name": "Yavatmal",
+          "planningAuthority": "YMC / Local Bodies",
+          "type": "Municipal Council",
+          "population": "2,772,348",
+          "area": "13,582 sq km",
+          "specialZones": ["Agricultural", "Cotton Belt"]
+        },
+        {
+          "name": "Buldhana",
+          "planningAuthority": "BMC / Local Bodies",
+          "type": "Municipal Council",
+          "population": "2,586,258",
+          "area": "9,661 sq km",
+          "specialZones": ["Agricultural"]
+        },
+        {
+          "name": "Washim",
+          "planningAuthority": "WMC / Local Bodies",
+          "type": "Municipal Council",
+          "population": "1,197,160",
+          "area": "5,150 sq km",
+          "specialZones": ["Agricultural"]
+        }
+      ]
+    }
+  ]
+}

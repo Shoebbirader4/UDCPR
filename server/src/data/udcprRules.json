@@ -1,0 +1,262 @@
+[
+  {
+    "chapter": "Chapter 3",
+    "section": "Section 2",
+    "clause": "3.2.1",
+    "summary": "FSI for Residential Zones - Road Width Based",
+    "fullText": "The permissible FSI for residential zones shall be: (a) 1.0 for plots abutting roads less than 9m wide, (b) 1.2 for roads between 9m to 12m, (c) 1.5 for roads between 12m to 18m, and (d) 2.0 for roads above 18m width. This FSI is applicable to residential zones R1, R2, and R3 as per the Development Plan.",
+    "keywords": ["FSI", "residential", "road width", "floor space index", "R1", "R2", "R3"],
+    "category": "FSI",
+    "applicableZones": ["Residential", "R1", "R2", "R3"]
+  },
+  {
+    "chapter": "Chapter 3",
+    "section": "Section 2",
+    "clause": "3.2.2",
+    "summary": "Additional FSI through Incentives",
+    "fullText": "Additional FSI of up to 20% may be granted for: (a) Providing affordable housing component (minimum 20% of built-up area), (b) Green building certification (IGBC Gold or above), (c) Rainwater harvesting and solar energy systems, (d) Universal accessibility features. Maximum combined additional FSI shall not exceed 30% of base FSI.",
+    "keywords": ["FSI", "incentive", "affordable housing", "green building", "bonus FSI"],
+    "category": "FSI",
+    "applicableZones": ["Residential", "Commercial", "Mixed"]
+  },
+  {
+    "chapter": "Chapter 3",
+    "section": "Section 3",
+    "clause": "3.3.1",
+    "summary": "Front Setback Requirements for Residential Buildings",
+    "fullText": "Front setback from road boundary: (a) 3m minimum for plots up to 300 sq.m, (b) 4m for plots 301-500 sq.m, (c) 5m for plots 501-1000 sq.m, (d) 6m for plots above 1000 sq.m. For roads wider than 18m, front setback shall be minimum 1/3rd of road width or as specified above, whichever is higher.",
+    "keywords": ["setback", "residential", "front setback", "road boundary"],
+    "category": "Setback",
+    "applicableZones": ["Residential", "R1", "R2", "R3"]
+  },
+  {
+    "chapter": "Chapter 3",
+    "section": "Section 3",
+    "clause": "3.3.2",
+    "summary": "Side and Rear Setback Requirements",
+    "fullText": "Side setback: (a) 1.5m minimum for buildings up to 10m height, (b) 2m for buildings 10-15m height, (c) 3m for buildings above 15m height. Rear setback: (a) 3m minimum for plots up to 500 sq.m, (b) 4m for plots 501-1000 sq.m, (c) 6m for plots above 1000 sq.m. No construction permitted in setback areas except compound wall and gate.",
+    "keywords": ["setback", "side setback", "rear setback", "building height"],
+    "category": "Setback",
+    "applicableZones": ["Residential", "R1", "R2", "R3"]
+  },
+  {
+    "chapter": "Chapter 3",
+    "section": "Section 4",
+    "clause": "3.4.1",
+    "summary": "Building Height Restrictions - Residential",
+    "fullText": "Maximum building height for residential zones: (a) 15m for roads up to 9m wide, (b) 24m for roads 9-12m wide, (c) 30m for roads 12-18m wide, (d) 45m for roads 18-24m wide, (e) No restriction for roads above 24m wide subject to FSI compliance and aviation clearance.",
+    "keywords": ["height", "residential", "building height", "road width", "height restriction"],
+    "category": "Height",
+    "applicableZones": ["Residential", "R1", "R2", "R3"]
+  },
+  {
+    "chapter": "Chapter 4",
+    "section": "Section 1",
+    "clause": "4.1.1",
+    "summary": "FSI for Commercial Zones",
+    "fullText": "The permissible FSI for commercial zones shall be: (a) 1.5 for roads up to 12m wide, (b) 2.0 for roads 12-18m wide, (c) 2.5 for roads above 18m width. Additional FSI may be granted through TDR up to maximum 3.0. Commercial zones include C1 (Local Commercial), C2 (District Commercial), and C3 (Regional Commercial).",
+    "keywords": ["FSI", "commercial", "TDR", "transferable development rights", "C1", "C2", "C3"],
+    "category": "FSI",
+    "applicableZones": ["Commercial", "C1", "C2", "C3"]
+  },
+  {
+    "chapter": "Chapter 4",
+    "section": "Section 1",
+    "clause": "4.1.2",
+    "summary": "Mixed-Use Development FSI",
+    "fullText": "For mixed-use developments combining residential and commercial: Base FSI shall be weighted average of residential and commercial FSI based on area proportion. Minimum 60% of ground floor frontage shall be commercial. Separate entrances required for residential and commercial components.",
+    "keywords": ["FSI", "mixed-use", "residential", "commercial", "weighted average"],
+    "category": "FSI",
+    "applicableZones": ["Mixed", "M1", "M2"]
+  },
+  {
+    "chapter": "Chapter 4",
+    "section": "Section 2",
+    "clause": "4.2.1",
+    "summary": "Height Restrictions for Commercial Buildings",
+    "fullText": "Maximum height for commercial buildings: (a) 18m for roads up to 9m wide, (b) 24m for roads 9-12m wide, (c) 30m for roads 12-18m, (d) 45m for roads 18-24m, (e) 70m for roads above 24m. High-rise commercial buildings above 70m require special approval and structural stability certificate.",
+    "keywords": ["height", "commercial", "building height", "road width", "high-rise"],
+    "category": "Height",
+    "applicableZones": ["Commercial", "C1", "C2", "C3"]
+  },
+  {
+    "chapter": "Chapter 4",
+    "section": "Section 3",
+    "clause": "4.3.1",
+    "summary": "Commercial Setback Requirements",
+    "fullText": "Front setback for commercial: (a) 3m for roads up to 12m, (b) 4m for roads 12-18m, (c) 6m for roads above 18m. Side setback: 3m minimum. Rear setback: 4m minimum. Setback may be reduced by 1m if used for public plaza or pedestrian amenities with 24/7 access.",
+    "keywords": ["setback", "commercial", "front setback", "public plaza"],
+    "category": "Setback",
+    "applicableZones": ["Commercial", "C1", "C2", "C3"]
+  },
+  {
+    "chapter": "Chapter 5",
+    "section": "Section 1",
+    "clause": "5.1.1",
+    "summary": "Parking Requirements - Residential",
+    "fullText": "Residential parking: (a) 1 ECS per dwelling unit up to 60 sq.m, (b) 2 ECS per dwelling unit 61-120 sq.m, (c) 3 ECS per dwelling unit above 120 sq.m. Additional 0.5 ECS per unit for visitor parking. Minimum 30% parking spaces shall be mechanized or stacked parking for plots above 2000 sq.m.",
+    "keywords": ["parking", "ECS", "equivalent car space", "residential", "visitor parking"],
+    "category": "Parking",
+    "applicableZones": ["Residential", "R1", "R2", "R3"]
+  },
+  {
+    "chapter": "Chapter 5",
+    "section": "Section 1",
+    "clause": "5.1.2",
+    "summary": "Parking Requirements - Commercial",
+    "fullText": "Commercial parking: (a) 1 ECS per 100 sq.m for retail, (b) 1 ECS per 75 sq.m for offices, (c) 1 ECS per 50 sq.m for restaurants/entertainment, (d) 1 ECS per 10 seats for cinema halls. Minimum 20% spaces reserved for two-wheelers. Valet parking permitted with prior approval.",
+    "keywords": ["parking", "ECS", "commercial", "retail", "office", "restaurant"],
+    "category": "Parking",
+    "applicableZones": ["Commercial", "C1", "C2", "C3"]
+  },
+  {
+    "chapter": "Chapter 5",
+    "section": "Section 1",
+    "clause": "5.1.3",
+    "summary": "Parking Requirements - Industrial",
+    "fullText": "Industrial parking: (a) 1 ECS per 200 sq.m for manufacturing, (b) 1 ECS per 150 sq.m for warehousing, (c) 1 ECS per 100 sq.m for IT/ITES. Additional parking for goods vehicles: 1 space per 500 sq.m. Separate entry/exit for goods vehicles mandatory.",
+    "keywords": ["parking", "industrial", "manufacturing", "warehousing", "IT", "goods vehicles"],
+    "category": "Parking",
+    "applicableZones": ["Industrial", "I1", "I2"]
+  },
+  {
+    "chapter": "Chapter 5",
+    "section": "Section 2",
+    "clause": "5.2.1",
+    "summary": "EV Charging Infrastructure",
+    "fullText": "All new developments with parking for more than 20 vehicles shall provide: (a) 20% parking spaces with EV charging points, (b) Electrical infrastructure for future 100% EV charging capability, (c) Dedicated parking for EV vehicles near building entrance. Existing buildings encouraged to retrofit with incentives.",
+    "keywords": ["parking", "EV", "electric vehicle", "charging", "infrastructure"],
+    "category": "Parking",
+    "applicableZones": ["All"]
+  },
+  {
+    "chapter": "Chapter 6",
+    "section": "Section 1",
+    "clause": "6.1.1",
+    "summary": "Heritage Zone Restrictions - Grade I",
+    "fullText": "Grade I Heritage structures: No structural alterations permitted. Only restoration and conservation work allowed. FSI limited to existing built-up area. Height shall not exceed existing structure. All work requires Heritage Committee approval. Owners eligible for TDR equivalent to unutilized FSI.",
+    "keywords": ["heritage", "Grade I", "conservation", "restoration", "TDR"],
+    "category": "Heritage",
+    "applicableZones": ["Heritage", "H1"]
+  },
+  {
+    "chapter": "Chapter 6",
+    "section": "Section 1",
+    "clause": "6.1.2",
+    "summary": "Heritage Zone Restrictions - Grade II",
+    "fullText": "Grade II Heritage structures: Limited alterations permitted with Heritage Committee approval. FSI limited to 1.0 regardless of road width. Height restricted to existing structure height or 12m, whichever is lower. Facade must be preserved. Interior modifications allowed subject to structural safety.",
+    "keywords": ["heritage", "Grade II", "facade", "preservation", "FSI limit"],
+    "category": "Heritage",
+    "applicableZones": ["Heritage", "H2"]
+  },
+  {
+    "chapter": "Chapter 6",
+    "section": "Section 2",
+    "clause": "6.2.1",
+    "summary": "Heritage Precinct Guidelines",
+    "fullText": "Within 100m of heritage structures: New construction height limited to heritage structure height plus 3m. Architectural style should be compatible with heritage character. Use of traditional materials encouraged. Modern materials permitted if aesthetically compatible. Signage and advertisements restricted.",
+    "keywords": ["heritage", "precinct", "architectural style", "compatibility", "signage"],
+    "category": "Heritage",
+    "applicableZones": ["Heritage", "H1", "H2"]
+  },
+  {
+    "chapter": "Chapter 7",
+    "section": "Section 1",
+    "clause": "7.1.1",
+    "summary": "TDR Eligibility and Calculation",
+    "fullText": "TDR available for: (a) Land surrendered for roads/public purposes, (b) Heritage conservation (unutilized FSI), (c) Slum rehabilitation projects, (d) Coastal Regulation Zone restrictions. TDR quantum = Surrendered area × Base FSI of receiving zone. TDR valid for 10 years from issue date.",
+    "keywords": ["TDR", "transferable development rights", "FSI bonus", "heritage", "slum rehabilitation"],
+    "category": "TDR",
+    "applicableZones": ["All"]
+  },
+  {
+    "chapter": "Chapter 7",
+    "section": "Section 1",
+    "clause": "7.1.2",
+    "summary": "TDR Utilization Zones",
+    "fullText": "TDR can be utilized in: (a) Commercial zones (C1, C2, C3), (b) Mixed-use zones (M1, M2), (c) Designated TDR receiving zones. Maximum FSI with TDR: 3.0 for commercial, 2.5 for residential. TDR cannot be used in: Heritage zones, CRZ areas, Green zones, Airport funnel zones.",
+    "keywords": ["TDR", "utilization", "receiving zone", "commercial", "restrictions"],
+    "category": "TDR",
+    "applicableZones": ["Commercial", "Mixed"]
+  },
+  {
+    "chapter": "Chapter 8",
+    "section": "Section 1",
+    "clause": "8.1.1",
+    "summary": "Amenity Space Requirements - Residential",
+    "fullText": "Residential developments: (a) 10% of plot area for plots 1000-5000 sq.m, (b) 15% for plots above 5000 sq.m. Amenities include: children's play area, landscaped gardens, community hall, senior citizen area. Minimum 50% amenity space shall be at ground level. Rooftop amenities permitted for remaining.",
+    "keywords": ["amenity", "open space", "recreation", "residential", "play area"],
+    "category": "Amenity",
+    "applicableZones": ["Residential", "R1", "R2", "R3"]
+  },
+  {
+    "chapter": "Chapter 8",
+    "section": "Section 1",
+    "clause": "8.1.2",
+    "summary": "Amenity Space Requirements - Commercial",
+    "fullText": "Commercial developments above 2000 sq.m: Minimum 5% of plot area for public amenities. Include: landscaped areas, seating spaces, public toilets, drinking water. Ground floor amenities must be accessible to public during business hours. Additional 3% FSI incentive for providing 10% amenity space.",
+    "keywords": ["amenity", "commercial", "public space", "landscaping", "FSI incentive"],
+    "category": "Amenity",
+    "applicableZones": ["Commercial", "C1", "C2", "C3"]
+  },
+  {
+    "chapter": "Chapter 9",
+    "section": "Section 1",
+    "clause": "9.1.1",
+    "summary": "Coastal Regulation Zone (CRZ) Restrictions",
+    "fullText": "CRZ-I (Ecologically sensitive): No construction permitted except for public facilities. CRZ-II (Built-up areas): FSI as per Development Plan, maximum 1.33. CRZ-III (Relatively undisturbed): FSI 0.25, minimum plot size 1000 sq.m. All construction requires CRZ clearance from Coastal Zone Management Authority.",
+    "keywords": ["CRZ", "coastal", "FSI", "environmental", "clearance"],
+    "category": "Environmental",
+    "applicableZones": ["CRZ", "Coastal"]
+  },
+  {
+    "chapter": "Chapter 9",
+    "section": "Section 2",
+    "clause": "9.2.1",
+    "summary": "Green Building Requirements",
+    "fullText": "Mandatory for: (a) All buildings above 5000 sq.m, (b) Government buildings above 2000 sq.m. Minimum IGBC/GRIHA 3-star rating required. Requirements: rainwater harvesting, solar panels (minimum 20% energy), waste management, energy-efficient lighting. 5% additional FSI for 5-star rating.",
+    "keywords": ["green building", "IGBC", "sustainable", "solar", "rainwater harvesting"],
+    "category": "Environmental",
+    "applicableZones": ["All"]
+  },
+  {
+    "chapter": "Chapter 10",
+    "section": "Section 1",
+    "clause": "10.1.1",
+    "summary": "Fire Safety Requirements",
+    "fullText": "Buildings above 15m height: (a) Two staircases minimum, (b) Fire lift mandatory above 24m, (c) Sprinkler system throughout, (d) Fire alarm and detection system, (e) Refuge area every 24m height. Fire NOC from Fire Department mandatory before occupation certificate. Annual fire safety audit required.",
+    "keywords": ["fire safety", "staircase", "sprinkler", "fire NOC", "high-rise"],
+    "category": "Safety",
+    "applicableZones": ["All"]
+  },
+  {
+    "chapter": "Chapter 10",
+    "section": "Section 2",
+    "clause": "10.2.1",
+    "summary": "Structural Safety Requirements",
+    "fullText": "All buildings require: (a) Structural stability certificate from licensed structural engineer, (b) Soil investigation report for buildings above 15m, (c) Seismic design as per IS codes, (d) Third-party structural audit for buildings above 30m. Structural drawings must be signed by registered structural engineer.",
+    "keywords": ["structural safety", "engineer", "seismic", "soil investigation", "stability"],
+    "category": "Safety",
+    "applicableZones": ["All"]
+  },
+  {
+    "chapter": "Chapter 11",
+    "section": "Section 1",
+    "clause": "11.1.1",
+    "summary": "Universal Accessibility Requirements",
+    "fullText": "All buildings must provide: (a) Ramp access with maximum 1:12 slope, (b) Accessible toilets on each floor, (c) Lifts with Braille buttons and audio announcements, (d) Tactile paving for visually impaired, (e) Minimum 10% parking for persons with disabilities. Mandatory for all public and commercial buildings.",
+    "keywords": ["accessibility", "disabled", "ramp", "universal design", "inclusive"],
+    "category": "Accessibility",
+    "applicableZones": ["All"]
+  },
+  {
+    "chapter": "Chapter 12",
+    "section": "Section 1",
+    "clause": "12.1.1",
+    "summary": "Affordable Housing Requirements",
+    "fullText": "Residential projects above 4000 sq.m: Minimum 20% built-up area for affordable housing (units up to 60 sq.m carpet area). Affordable units must have same amenities as other units. Incentive: 15% additional FSI. Units cannot be sold for 10 years. Separate entry not permitted.",
+    "keywords": ["affordable housing", "social housing", "FSI incentive", "inclusionary zoning"],
+    "category": "Social",
+    "applicableZones": ["Residential", "Mixed"]
+  }
+]

@@ -1,0 +1,94 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+
+function Calculator() {
+  const [inputs, setInputs] = useState({
+    zone: 'Residential',
+    plotArea: '',
+    roadWidth: '',
+    landUse: 'Residential',
+    buildingType: 'Residential'
+  });
+  const [results, setResults] = useState(null);
+
+  const handleCalculate = async () => {
+    try {
+      const response = await axios.post('/api/calculator/calculate', inputs);
+      setResults(response.data);
+    } catch (error) {
+      alert('Calculation failed: ' + error.message);
+    }
+  };
+
+  return (
+    <div className="container" style={{ paddingTop: '40px' }}>
+      <h1 style={{ marginBottom: '30px' }}>FSI & Setback Calculator</h1>
+      
+      <div className="card">
+        <h3 style={{ marginBottom: '20px' }}>Project Parameters</h3>
+        
+        <div style={{ display: 'grid', gap: '15px' }}>
+          <div>
+            <label>Zone Type</label>
+            <select value={inputs.zone} onChange={(e) => setInputs({...inputs, zone: e.target.value})}>
+              <option>Residential</option>
+              <option>Commercial</option>
+              <option>Industrial</option>
+              <option>Mixed</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Plot Area (sq.m)</label>
+            <input 
+              type="number" 
+              value={inputs.plotArea}
+              onChange={(e) => setInputs({...inputs, plotArea: e.target.value})}
+              placeholder="Enter plot area"
+            />
+          </div>
+
+          <div>
+            <label>Road Width (m)</label>
+            <input 
+              type="number" 
+              value={inputs.roadWidth}
+              onChange={(e) => setInputs({...inputs, roadWidth: e.target.value})}
+              placeholder="Enter road width"
+            />
+          </div>
+
+          <button 
+            onClick={handleCalculate}
+            style={{ background: '#10b981', color: 'white', marginTop: '10px' }}
+          >
+            Calculate
+          </button>
+        </div>
+      </div>
+
+      {results && (
+        <div className="card" style={{ background: '#f0fdf4', border: '2px solid #10b981' }}>
+          <h3 style={{ marginBottom: '20px', color: '#10b981' }}>Results</h3>
+          <div style={{ display: 'grid', gap: '10px' }}>
+            <p><strong>Permissible FSI:</strong> {results.permissibleFSI}</p>
+            <p><strong>Maximum Height:</strong> {results.maxHeight}m</p>
+            <p><strong>Front Setback:</strong> {results.setbacks.front}m</p>
+            <p><strong>Rear Setback:</strong> {results.setbacks.rear}m</p>
+            <p><strong>Side Setbacks:</strong> {results.setbacks.side1}m</p>
+            {results.notes && results.notes.length > 0 && (
+              <div style={{ marginTop: '10px', padding: '10px', background: '#fef3c7', borderRadius: '6px' }}>
+                <strong>Notes:</strong>
+                <ul style={{ marginTop: '5px', paddingLeft: '20px' }}>
+                  {results.notes.map((note, i) => <li key={i}>{note}</li>)}
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default Calculator;

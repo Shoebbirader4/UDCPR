@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Home, BookOpen, MapPin, Calculator, CheckCircle, Bot, FileText } from 'lucide-react';
+import { Home, BookOpen, MapPin, Calculator, CheckCircle, Bot, FileText, Table, List } from 'lucide-react';
 
 function Navbar() {
   const navigate = useNavigate();
@@ -10,6 +10,8 @@ function Navbar() {
     { name: 'Home', path: '/', icon: Home },
     { name: 'District Rules', path: '/district-rules', icon: MapPin },
     { name: 'General Rules', path: '/rules', icon: BookOpen },
+    { name: 'Regulations', path: '/regulations', icon: List },
+    { name: 'Tables', path: '/tables', icon: Table },
     { name: 'Calculator', path: '/calculator', icon: Calculator },
     { name: 'Compliance', path: '/compliance', icon: CheckCircle },
     { name: 'AI Assistant', path: '/ai-assistant', icon: Bot },

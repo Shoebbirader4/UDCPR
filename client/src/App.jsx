@@ -10,6 +10,8 @@ import AIAssistant from './pages/AIAssistant';
 import ZoneFinder from './pages/ZoneFinder';
 import Projects from './pages/Projects';
 import DistrictRules from './pages/DistrictRules';
+import TableViewer from './pages/TableViewer';
+import RegulationBrowser from './pages/RegulationBrowser';
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
             <Route path="/ai-assistant" element={<AIAssistant />} />
             <Route path="/zone-finder" element={<ZoneFinder />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/tables" element={<TableViewer />} />
+            <Route path="/regulations" element={<RegulationBrowser />} />
           </Routes>
         </div>
         <Footer />

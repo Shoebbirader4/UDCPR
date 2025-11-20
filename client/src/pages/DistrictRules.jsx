@@ -10,6 +10,7 @@ function DistrictRules() {
   const [rules, setRules] = useState([]);
   const [loading, setLoading] = useState(false);
   const [stats, setStats] = useState(null);
+  const [error, setError] = useState(null);
 
   const categories = [
     'FSI', 
@@ -38,6 +39,8 @@ function DistrictRules() {
   useEffect(() => {
     loadDistricts();
     loadStats();
+    // Load initial rules (all districts, all categories)
+    handleSearch();
   }, []);
 
   const loadDistricts = async () => {
@@ -60,6 +63,7 @@ function DistrictRules() {
 
   const handleSearch = async () => {
     setLoading(true);
+    setError(null);
     try {
       const params = {};
       if (selectedDistrict) params.district = selectedDistrict;
@@ -69,10 +73,12 @@ function DistrictRules() {
       const response = await axios.get('/api/district-rules/search', { params });
       setRules(response.data);
     } catch (error) {
-      alert('Search failed: ' + error.message);
+      setError(error.response?.data?.error || error.message || 'Failed to load rules');
+      console.error('Search failed:', error);
     }
     setLoading(false);
   };
+
 
   return (
     <div className="container" style={{ paddingTop: '40px' }}>
@@ -83,7 +89,7 @@ function DistrictRules() {
         </p>
         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
           <span style={{ background: '#e0e7ff', padding: '6px 14px', borderRadius: '20px', fontSize: '13px', fontWeight: '500' }}>
-            📋 2,704 Rules
+            📋 2,387 Rules
           </span>
           <span style={{ background: '#fef3c7', padding: '6px 14px', borderRadius: '20px', fontSize: '13px', fontWeight: '500' }}>
             🏷️ 21 Categories
@@ -100,11 +106,46 @@ function DistrictRules() {
         </div>
       </div>
 
+      {/* DATA QUALITY NOTICE */}
+      <div className="card" style={{ 
+        background: '#fef3c7', 
+        border: '2px solid #f59e0b',
+        marginBottom: '30px'
+      }}>
+        <h3 style={{ color: '#92400e', marginBottom: '15px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+          ℹ️ Data Quality Notice
+        </h3>
+        <div style={{ color: '#92400e', fontSize: '14px', lineHeight: '1.6' }}>
+          <p style={{ marginBottom: '10px' }}>
+            <strong>✅ Recent Improvements:</strong> We've removed 317 invalid rules (Chapters 15-17 which don't exist in UDCPR 2020).
+          </p>
+          <p style={{ marginBottom: '10px' }}>
+            <strong>Current Status:</strong> 2,387 district rules with valid chapter references (Chapters 1-14).
+          </p>
+          <p style={{ marginBottom: '10px', fontWeight: '600' }}>
+            ⚠️ However, these rules still require manual verification against official UDCPR PDFs.
+          </p>
+          <p style={{ 
+            background: '#dbeafe', 
+            padding: '12px', 
+            borderRadius: '6px',
+            border: '1px solid #3b82f6',
+            color: '#1e40af',
+            marginTop: '15px'
+          }}>
+            <strong>💡 Recommendation:</strong> Use these rules for research and reference, but always verify with:
+            <br />• Official UDCPR 2020 PDF documents
+            <br />• Your local planning authority
+            <br />• Professional UDCPR consultants
+          </p>
+        </div>
+      </div>
+
       {stats && (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '15px', marginBottom: '30px' }}>
           <div className="card" style={{ background: '#f0f9ff', border: '2px solid #0369a1' }}>
             <h3 style={{ color: '#0369a1', marginBottom: '5px' }}>{stats.totalRules}</h3>
-            <p style={{ fontSize: '14px', color: '#666' }}>Total Rules</p>
+            <p style={{ fontSize: '14px', color: '#666' }}>Total Rules (Unverified)</p>
           </div>
           <div className="card" style={{ background: '#f0fdf4', border: '2px solid #10b981' }}>
             <h3 style={{ color: '#10b981', marginBottom: '5px' }}>{stats.totalDistricts}</h3>
@@ -219,12 +260,51 @@ function DistrictRules() {
         </div>
       </div>
 
-      {loading && <p>Searching...</p>}
+      {error && (
+        <div className="card" style={{ 
+          background: '#fee2e2', 
+          border: '2px solid #ef4444',
+          marginTop: '20px'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
+            <div>
+              <strong style={{ color: '#991b1b' }}>❌ Error</strong>
+              <p style={{ color: '#991b1b', marginTop: '5px' }}>{error}</p>
+            </div>
+            <button 
+              onClick={() => setError(null)}
+              style={{ 
+                background: '#ef4444', 
+                color: 'white',
+                padding: '6px 12px',
+                border: 'none',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontSize: '12px'
+              }}
+            >
+              Dismiss
+            </button>
+          </div>
+        </div>
+      )}
 
-      {rules.length > 0 && (
+      {loading && (
+        <div className="card" style={{ textAlign: 'center', padding: '40px', background: '#f9fafb', marginTop: '20px' }}>
+          <p style={{ color: '#666', fontSize: '16px' }}>🔍 Loading rules...</p>
+        </div>
+      )}
+
+      {!loading && rules.length > 0 && (
         <div style={{ marginTop: '20px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
-            <h3>
+          <div style={{ 
+            padding: '12px 20px', 
+            background: '#f0f9ff', 
+            borderRadius: '8px',
+            border: '1px solid #0284c7',
+            marginBottom: '15px'
+          }}>
+            <h3 style={{ margin: 0, color: '#0c4a6e' }}>
               Found {rules.length} rule{rules.length !== 1 ? 's' : ''}
               {selectedDistrict && ` in ${selectedDistrict}`}
               {selectedCategory && ` (${selectedCategory})`}
@@ -249,6 +329,7 @@ function DistrictRules() {
           <div style={{ display: 'grid', gap: '15px' }}>
             {rules.map((rule) => (
               <div key={rule._id} className="card" style={{ borderLeft: '4px solid #3b82f6' }}>
+                
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '10px' }}>
                   <div>
                     <span style={{ 
@@ -310,9 +391,13 @@ function DistrictRules() {
         </div>
       )}
 
-      {!loading && rules.length === 0 && (selectedDistrict || selectedCategory || query) && (
-        <div className="card" style={{ textAlign: 'center', padding: '40px', background: '#f9fafb' }}>
-          <p style={{ color: '#666' }}>No rules found matching your criteria. Try different filters.</p>
+      {!loading && !error && rules.length === 0 && (
+        <div className="card" style={{ textAlign: 'center', padding: '40px', background: '#f9fafb', marginTop: '20px' }}>
+          <p style={{ color: '#666', fontSize: '16px' }}>
+            {selectedDistrict || selectedCategory || query
+              ? '📭 No rules found matching your criteria. Try different filters.'
+              : '📚 Select filters or enter a search term to find rules.'}
+          </p>
         </div>
       )}
 

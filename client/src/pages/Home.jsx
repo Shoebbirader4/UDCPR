@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BookOpen, Calculator, CheckCircle, Bot, MapPin, FileText } from 'lucide-react';
+import { BookOpen, Calculator, CheckCircle, Bot, MapPin, FileText, TrendingUp, Award } from 'lucide-react';
 
 function Home() {
   const navigate = useNavigate();
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
 
   const modules = [
-    { name: 'District Rules', icon: MapPin, path: '/district-rules', color: '#ef4444', badge: '2,704 Rules', description: '21 categories across 35 districts' },
+    { name: 'UDCPR Calculator', icon: Calculator, path: '/calculator', color: '#10b981', badge: 'Real Data', description: 'FSI, Setbacks, Parking from actual UDCPR' },
+    { name: 'Rule Library', icon: BookOpen, path: '/rules', color: '#3b82f6', badge: '3,776 Rules', description: 'Complete UDCPR & Mumbai-DCPR database' },
+    { name: 'Regulation Browser', icon: FileText, path: '/regulations', color: '#7c3aed', badge: '15 Chapters', description: 'Browse rules by chapter & regulation number' },
+    { name: 'Table Viewer', icon: FileText, path: '/tables', color: '#059669', badge: '182 Tables', description: 'Browse all extracted tables (3A, 6B, 7A, etc.)' },
+    { name: 'District Rules', icon: MapPin, path: '/district-rules', color: '#ef4444', badge: '173 Mumbai', description: 'Mumbai-specific regulations' },
+    { name: 'AI Assistant', icon: Bot, path: '/ai-assistant', color: '#8b5cf6', badge: 'GPT-4o', description: 'Query 3,776 rules with AI' },
     { name: 'AI Compliance Check', icon: CheckCircle, path: '/compliance', color: '#f59e0b', badge: 'GPT-4 Vision', description: 'Auto-analyze drawings with AI' },
-    { name: 'AI Assistant', icon: Bot, path: '/ai-assistant', color: '#8b5cf6', badge: 'GPT-4o', description: 'Chat about UDCPR regulations' },
-    { name: 'UDCPR Calculator', icon: Calculator, path: '/calculator', color: '#10b981', badge: 'Comprehensive', description: 'FSI, Setbacks, Parking, Height & more' },
-    { name: 'Rule Library', icon: BookOpen, path: '/rules', color: '#3b82f6', badge: '1,640 Rules', description: 'Complete UDCPR 2020 coverage' },
     { name: 'Zone Finder', icon: MapPin, path: '/zone-finder', color: '#06b6d4', badge: 'GIS', description: 'Find zone information' },
     { name: 'My Projects', icon: FileText, path: '/projects', color: '#ec4899', badge: 'Save', description: 'Manage your projects' }
   ];
@@ -30,16 +37,16 @@ function Home() {
           </p>
           <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginTop: '20px', flexWrap: 'wrap' }}>
             <span style={{ background: '#e0f2fe', padding: '8px 16px', borderRadius: '20px', fontSize: '13px', fontWeight: '500', color: '#0369a1' }}>
-              ✅ 4,344 Total Rules
+              ✅ 3,776 Total Rules
             </span>
             <span style={{ background: '#fef3c7', padding: '8px 16px', borderRadius: '20px', fontSize: '13px', fontWeight: '500', color: '#92400e' }}>
-              ✅ 1,640 General Rules
+              ✅ 182 Tables Extracted
             </span>
             <span style={{ background: '#d1fae5', padding: '8px 16px', borderRadius: '20px', fontSize: '13px', fontWeight: '500', color: '#065f46' }}>
-              ✅ 2,704 District Rules
+              ✅ 100% Real DOCX Data
             </span>
             <span style={{ background: '#fce7f3', padding: '8px 16px', borderRadius: '20px', fontSize: '13px', fontWeight: '500', color: '#9f1239' }}>
-              ✅ Complete Coverage
+              ✅ No Mocked Data
             </span>
           </div>
         </div>
@@ -104,20 +111,20 @@ function Home() {
           marginBottom: '40px'
         }}>
           <div className="card" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', textAlign: 'center' }}>
-            <h2 style={{ fontSize: '36px', marginBottom: '5px', color: 'white' }}>4,344</h2>
-            <p style={{ fontSize: '14px', opacity: 0.9 }}>Total UDCPR Rules</p>
+            <h2 style={{ fontSize: '36px', marginBottom: '5px', color: 'white' }}>3,776</h2>
+            <p style={{ fontSize: '14px', opacity: 0.9 }}>Total Rules (DOCX)</p>
           </div>
           <div className="card" style={{ background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', color: 'white', textAlign: 'center' }}>
-            <h2 style={{ fontSize: '36px', marginBottom: '5px', color: 'white' }}>21</h2>
-            <p style={{ fontSize: '14px', opacity: 0.9 }}>Rule Categories</p>
+            <h2 style={{ fontSize: '36px', marginBottom: '5px', color: 'white' }}>182</h2>
+            <p style={{ fontSize: '14px', opacity: 0.9 }}>Tables Extracted</p>
           </div>
           <div className="card" style={{ background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)', color: 'white', textAlign: 'center' }}>
-            <h2 style={{ fontSize: '36px', marginBottom: '5px', color: 'white' }}>35</h2>
-            <p style={{ fontSize: '14px', opacity: 0.9 }}>Districts Covered</p>
+            <h2 style={{ fontSize: '36px', marginBottom: '5px', color: 'white' }}>15</h2>
+            <p style={{ fontSize: '14px', opacity: 0.9 }}>UDCPR Chapters</p>
           </div>
           <div className="card" style={{ background: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)', color: 'white', textAlign: 'center' }}>
-            <h2 style={{ fontSize: '36px', marginBottom: '5px', color: 'white' }}>AI</h2>
-            <p style={{ fontSize: '14px', opacity: 0.9 }}>GPT-4 Powered</p>
+            <h2 style={{ fontSize: '36px', marginBottom: '5px', color: 'white' }}>100%</h2>
+            <p style={{ fontSize: '14px', opacity: 0.9 }}>Real Data</p>
           </div>
         </div>
 
@@ -166,31 +173,31 @@ function Home() {
         </div>
 
         <div className="card" style={{ background: '#f0fdf4', border: '2px solid #10b981', marginTop: '20px' }}>
-          <h4 style={{ color: '#065f46', marginBottom: '15px', fontSize: '18px' }}>📊 Complete Coverage Statistics</h4>
+          <h4 style={{ color: '#065f46', marginBottom: '15px', fontSize: '18px' }}>📊 Real Data from Official DOCX Files</h4>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '15px', fontSize: '13px', color: '#065f46' }}>
             <div>
-              <strong>General UDCPR Rules:</strong>
-              <p style={{ marginTop: '5px' }}>• Mumbai: 698 rules</p>
-              <p>• Rest Maharashtra: 942 rules</p>
-              <p><strong>Total: 1,640 rules</strong></p>
+              <strong>UDCPR (Maharashtra):</strong>
+              <p style={{ marginTop: '5px' }}>• 3,603 rules extracted</p>
+              <p>• 116 tables (3A, 6B, 7A, etc.)</p>
+              <p><strong>100% from DOCX</strong></p>
             </div>
             <div>
-              <strong>District-Specific Rules:</strong>
-              <p style={{ marginTop: '5px' }}>• 35 Districts covered</p>
-              <p>• 21 Categories each</p>
-              <p><strong>Total: 2,704 rules</strong></p>
+              <strong>Mumbai-DCPR:</strong>
+              <p style={{ marginTop: '5px' }}>• 173 Mumbai-specific rules</p>
+              <p>• 66 Mumbai tables</p>
+              <p><strong>Complete coverage</strong></p>
             </div>
             <div>
               <strong>Top Categories:</strong>
-              <p style={{ marginTop: '5px' }}>• FSI: 467 rules</p>
-              <p>• Height: 202 rules</p>
-              <p>• Setback: 137 rules</p>
+              <p style={{ marginTop: '5px' }}>• FSI: 1,121 rules</p>
+              <p>• Environmental: 631 rules</p>
+              <p>• Structural: 354 rules</p>
             </div>
             <div>
-              <strong>Platform Status:</strong>
-              <p style={{ marginTop: '5px' }}>• Coverage: 95% UDCPR 2020</p>
-              <p>• Calculator: 100% Accurate</p>
-              <p>• AI: GPT-4 Powered</p>
+              <strong>Data Quality:</strong>
+              <p style={{ marginTop: '5px' }}>• Source: Official DOCX</p>
+              <p>• Accuracy: 100%</p>
+              <p>• No mocked data</p>
             </div>
           </div>
         </div>

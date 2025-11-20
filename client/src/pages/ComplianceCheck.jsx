@@ -27,7 +27,21 @@ function ComplianceCheck() {
 
   return (
     <div className="container" style={{ paddingTop: '40px' }}>
-      <h1 style={{ marginBottom: '30px' }}>AI Compliance Check</h1>
+      <h1 style={{ marginBottom: '10px' }}>AI Compliance Check</h1>
+      <p style={{ color: '#666', marginBottom: '20px' }}>
+        Automated compliance validation using 3,776 real UDCPR rules from the database
+      </p>
+      <div style={{ display: 'flex', gap: '10px', marginBottom: '30px', flexWrap: 'wrap' }}>
+        <span style={{ background: '#e0f2fe', padding: '6px 12px', borderRadius: '16px', fontSize: '12px', fontWeight: '500', color: '#0369a1' }}>
+          ✅ Real Rule Validation
+        </span>
+        <span style={{ background: '#fef3c7', padding: '6px 12px', borderRadius: '16px', fontSize: '12px', fontWeight: '500', color: '#92400e' }}>
+          ✅ GPT-4 Vision Analysis
+        </span>
+        <span style={{ background: '#d1fae5', padding: '6px 12px', borderRadius: '16px', fontSize: '12px', fontWeight: '500', color: '#065f46' }}>
+          ✅ Specific Clause References
+        </span>
+      </div>
       
       <div className="card">
         <h3 style={{ marginBottom: '15px', display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -80,7 +94,7 @@ function ComplianceCheck() {
 
       <div className="card">
         <h3 style={{ marginBottom: '15px' }}>Project Details</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '15px' }}>
           <input 
             type="number"
             placeholder="Proposed FSI"
@@ -92,6 +106,36 @@ function ComplianceCheck() {
             placeholder="Permissible FSI"
             value={projectData.permissibleFSI}
             onChange={(e) => setProjectData({...projectData, permissibleFSI: e.target.value})}
+          />
+        </div>
+        
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '15px' }}>
+          <input 
+            type="number"
+            placeholder="Proposed Height (m)"
+            value={projectData.proposedHeight || ''}
+            onChange={(e) => setProjectData({...projectData, proposedHeight: e.target.value})}
+          />
+          <input 
+            type="number"
+            placeholder="Permissible Height (m)"
+            value={projectData.permissibleHeight || ''}
+            onChange={(e) => setProjectData({...projectData, permissibleHeight: e.target.value})}
+          />
+        </div>
+        
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
+          <input 
+            type="number"
+            placeholder="Provided Parking (ECS)"
+            value={projectData.providedParking || ''}
+            onChange={(e) => setProjectData({...projectData, providedParking: e.target.value})}
+          />
+          <input 
+            type="number"
+            placeholder="Required Parking (ECS)"
+            value={projectData.requiredParking || ''}
+            onChange={(e) => setProjectData({...projectData, requiredParking: e.target.value})}
           />
         </div>
         
@@ -207,23 +251,36 @@ function ComplianceCheck() {
               <div>
                 <h4 style={{ marginBottom: '10px' }}>Violations:</h4>
                 {result.violations.map((v, i) => (
-                  <div key={i} style={{ padding: '10px', background: '#fee2e2', borderRadius: '6px', marginBottom: '8px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
+                  <div key={i} style={{ padding: '12px', background: '#fee2e2', borderRadius: '8px', marginBottom: '10px', border: '1px solid #fecaca' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '8px' }}>
                       <div>
-                        <strong>{v.type}:</strong> {v.message}
+                        <strong style={{ color: '#dc2626' }}>{v.type}:</strong> {v.message}
                       </div>
                       {v.severity && (
                         <span style={{ 
                           fontSize: '11px', 
                           background: v.severity === 'high' ? '#dc2626' : v.severity === 'medium' ? '#f59e0b' : '#6b7280',
                           color: 'white',
-                          padding: '2px 8px',
-                          borderRadius: '8px'
+                          padding: '3px 10px',
+                          borderRadius: '10px',
+                          fontWeight: '600'
                         }}>
                           {v.severity}
                         </span>
                       )}
                     </div>
+                    {v.ruleReference && (
+                      <div style={{ 
+                        fontSize: '12px', 
+                        color: '#7f1d1d', 
+                        background: '#fef2f2', 
+                        padding: '6px 10px', 
+                        borderRadius: '6px',
+                        marginTop: '6px'
+                      }}>
+                        📖 <strong>Rule:</strong> {v.ruleReference} - {v.ruleClause}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
@@ -237,6 +294,50 @@ function ComplianceCheck() {
                     {r}
                   </div>
                 ))}
+              </div>
+            )}
+
+            {result.appliedRules && result.appliedRules.length > 0 && (
+              <div style={{ marginTop: '20px', padding: '15px', background: '#f9fafb', borderRadius: '8px', border: '1px solid #e5e7eb' }}>
+                <h4 style={{ marginBottom: '12px', color: '#374151' }}>
+                  📋 Rules Checked ({result.rulesChecked || result.appliedRules.length})
+                </h4>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  {result.appliedRules.map((rule, i) => (
+                    <div 
+                      key={i} 
+                      style={{ 
+                        display: 'flex', 
+                        justifyContent: 'space-between', 
+                        alignItems: 'center',
+                        padding: '8px 12px',
+                        background: 'white',
+                        borderRadius: '6px',
+                        fontSize: '13px'
+                      }}
+                    >
+                      <div>
+                        <strong style={{ color: '#1f2937' }}>{rule.reference}</strong>
+                        <span style={{ color: '#6b7280', marginLeft: '8px' }}>{rule.clause}</span>
+                      </div>
+                      <span style={{
+                        fontSize: '11px',
+                        background: rule.result === 'compliant' ? '#d1fae5' : '#fee2e2',
+                        color: rule.result === 'compliant' ? '#065f46' : '#991b1b',
+                        padding: '4px 10px',
+                        borderRadius: '10px',
+                        fontWeight: '600'
+                      }}>
+                        {rule.result === 'compliant' ? '✓ Compliant' : '✗ Violated'}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                {result.databaseRulesAvailable && (
+                  <div style={{ marginTop: '10px', fontSize: '12px', color: '#6b7280' }}>
+                    💡 {result.databaseRulesAvailable} relevant rules available in database
+                  </div>
+                )}
               </div>
             )}
           </div>

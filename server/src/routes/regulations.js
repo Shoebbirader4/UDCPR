@@ -3,28 +3,7 @@ import Rule from '../models/Rule.js';
 
 const router = express.Router();
 
-// Search rules with AI-powered semantic search
-router.get('/search', async (req, res) => {
-  try {
-    const { query, chapter, section, category } = req.query;
-    let filter = {};
-    
-    if (chapter) filter.chapter = chapter;
-    if (section) filter.section = section;
-    if (category) filter.category = category;
-    
-    if (query) {
-      filter.$text = { $search: query };
-    }
-    
-    const rules = await Rule.find(filter).limit(100);
-    res.json(rules);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-// GET /api/rules/chapters - Get all chapters with rule counts
+// GET /api/regulations/chapters - Get all chapters with rule counts
 router.get('/chapters', async (req, res) => {
   try {
     const chapters = await Rule.aggregate([
@@ -53,7 +32,57 @@ router.get('/chapters', async (req, res) => {
   }
 });
 
-// GET /api/rules/stats - Get overall statistics
+// GET /api/regulations/chapter/:number/regulations - Get regulations for a chapter
+router.get('/chapter/:number/regulations', async (req, res) => {
+  try {
+    const chapterNumber = parseInt(req.params.number);
+    
+    const regulations = await Rule.aggregate([
+      { $match: { chapter: chapterNumber } },
+      {
+        $group: {
+          _id: '$regulation',
+          title: { $first: '$regulationTitle' },
+          ruleCount: { $sum: 1 }
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          number: '$_id',
+          title: '$title',
+          ruleCount: 1
+        }
+      },
+      { $sort: { number: 1 } }
+    ]);
+
+    res.json(regulations);
+  } catch (error) {
+    console.error('Error fetching regulations:', error);
+    res.status(500).json({ error: 'Failed to fetch regulations' });
+  }
+});
+
+// GET /api/regulations/regulation/:number - Get rules for a regulation
+router.get('/regulation/:number', async (req, res) => {
+  try {
+    const regulationNumber = req.params.number;
+    
+    const rules = await Rule.find({ 
+      regulation: regulationNumber 
+    })
+    .select('reference clause summary category applicableZones hasTable hasFormula')
+    .sort({ clause: 1 });
+
+    res.json(rules);
+  } catch (error) {
+    console.error('Error fetching rules:', error);
+    res.status(500).json({ error: 'Failed to fetch rules' });
+  }
+});
+
+// GET /api/regulations/stats - Get overall statistics
 router.get('/stats', async (req, res) => {
   try {
     const totalRules = await Rule.countDocuments();
@@ -86,67 +115,6 @@ router.get('/stats', async (req, res) => {
   } catch (error) {
     console.error('Error fetching stats:', error);
     res.status(500).json({ error: 'Failed to fetch stats' });
-  }
-});
-
-// GET /api/rules/chapter/:number/regulations - Get regulations for a chapter
-router.get('/chapter/:number/regulations', async (req, res) => {
-  try {
-    const chapterNumber = parseInt(req.params.number);
-    
-    const regulations = await Rule.aggregate([
-      { $match: { chapter: chapterNumber } },
-      {
-        $group: {
-          _id: '$regulation',
-          title: { $first: '$regulationTitle' },
-          ruleCount: { $sum: 1 }
-        }
-      },
-      {
-        $project: {
-          _id: 0,
-          number: '$_id',
-          title: '$title',
-          ruleCount: 1
-        }
-      },
-      { $sort: { number: 1 } }
-    ]);
-
-    res.json(regulations);
-  } catch (error) {
-    console.error('Error fetching regulations:', error);
-    res.status(500).json({ error: 'Failed to fetch regulations' });
-  }
-});
-
-// GET /api/rules/regulation/:number - Get rules for a regulation
-router.get('/regulation/:number', async (req, res) => {
-  try {
-    const regulationNumber = req.params.number;
-    
-    const rules = await Rule.find({ 
-      regulation: regulationNumber 
-    })
-    .select('reference clause summary category applicableZones hasTable hasFormula')
-    .sort({ clause: 1 });
-
-    res.json(rules);
-  } catch (error) {
-    console.error('Error fetching rules:', error);
-    res.status(500).json({ error: 'Failed to fetch rules' });
-  }
-});
-
-// Get rule by ID
-router.get('/:id', async (req, res) => {
-  try {
-    const rule = await Rule.findById(req.params.id);
-    if (!rule) return res.status(404).json({ error: 'Rule not found' });
-    res.json(rule);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
   }
 });
 

@@ -16,6 +16,8 @@ import paymentsRouter from './routes/payments.js';
 import authRouter from './routes/auth.js';
 import reportsRouter from './routes/reports.js';
 import districtRulesRouter from './routes/districtRules.js';
+import tablesRouter from './routes/tables.js';
+import regulationsRouter from './routes/regulations.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -46,6 +48,8 @@ app.use('/api/ai', aiRouter);
 app.use('/api/projects', projectsRouter);
 app.use('/api/payments', paymentsRouter);
 app.use('/api/reports', reportsRouter);
+app.use('/api/tables', tablesRouter);
+app.use('/api/regulations', regulationsRouter);
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'UDCPR Master API is running' });

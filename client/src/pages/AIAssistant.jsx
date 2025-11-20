@@ -47,7 +47,11 @@ function AIAssistant() {
       setMessages(prev => [...prev, { 
         role: 'assistant', 
         content: response.data.response,
-        model: response.data.model
+        model: response.data.model,
+        rulesFound: response.data.rulesFound,
+        tablesFound: response.data.tablesFound,
+        relevantRules: response.data.relevantRules,
+        relevantTables: response.data.relevantTables
       }]);
     } catch (error) {
       const errorMsg = error.response?.data?.response || error.message;
@@ -78,8 +82,19 @@ function AIAssistant() {
           UDCPR AI Assistant
         </h1>
         <p style={{ color: '#666' }}>
-          Ask questions about UDCPR 2020 regulations. Powered by GPT-4o-mini with 1,087 rules from official PDFs.
+          Ask questions about UDCPR 2020 regulations. Powered by GPT-4o-mini with real-time access to 3,776 rules from the database.
         </p>
+        <div style={{ display: 'flex', gap: '10px', marginTop: '10px', flexWrap: 'wrap' }}>
+          <span style={{ background: '#e0f2fe', padding: '6px 12px', borderRadius: '16px', fontSize: '12px', fontWeight: '500', color: '#0369a1' }}>
+            ✅ 3,776 Real Rules
+          </span>
+          <span style={{ background: '#fef3c7', padding: '6px 12px', borderRadius: '16px', fontSize: '12px', fontWeight: '500', color: '#92400e' }}>
+            ✅ 182 Tables
+          </span>
+          <span style={{ background: '#d1fae5', padding: '6px 12px', borderRadius: '16px', fontSize: '12px', fontWeight: '500', color: '#065f46' }}>
+            ✅ Live Database
+          </span>
+        </div>
       </div>
 
       {/* Context Selection */}
@@ -187,10 +202,76 @@ function AIAssistant() {
                   {msg.model}
                 </span>
               )}
+              {msg.rulesFound > 0 && (
+                <span style={{ 
+                  fontSize: '11px', 
+                  background: '#d1fae5', 
+                  color: '#065f46', 
+                  padding: '2px 8px', 
+                  borderRadius: '10px',
+                  fontWeight: '600',
+                  marginLeft: 'auto'
+                }}>
+                  📚 {msg.rulesFound} rules
+                </span>
+              )}
+              {msg.tablesFound > 0 && (
+                <span style={{ 
+                  fontSize: '11px', 
+                  background: '#fef3c7', 
+                  color: '#92400e', 
+                  padding: '2px 8px', 
+                  borderRadius: '10px',
+                  fontWeight: '600',
+                  marginLeft: msg.rulesFound > 0 ? '5px' : 'auto'
+                }}>
+                  📊 {msg.tablesFound} tables
+                </span>
+              )}
             </div>
             <p style={{ marginTop: '5px', whiteSpace: 'pre-wrap', lineHeight: '1.6', fontSize: '14px' }}>
               {msg.content}
             </p>
+            {msg.relevantRules && msg.relevantRules.length > 0 && (
+              <div style={{ 
+                marginTop: '12px', 
+                padding: '10px', 
+                background: 'rgba(139, 92, 246, 0.05)', 
+                borderRadius: '8px',
+                borderLeft: '3px solid #8b5cf6'
+              }}>
+                <div style={{ fontSize: '12px', fontWeight: '600', color: '#8b5cf6', marginBottom: '6px' }}>
+                  📖 Referenced Rules:
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                  {msg.relevantRules.slice(0, 5).map((rule, idx) => (
+                    <div key={idx} style={{ fontSize: '11px', color: '#6b7280' }}>
+                      • {rule.reference}: {rule.clause}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {msg.relevantTables && msg.relevantTables.length > 0 && (
+              <div style={{ 
+                marginTop: '12px', 
+                padding: '10px', 
+                background: 'rgba(245, 158, 11, 0.05)', 
+                borderRadius: '8px',
+                borderLeft: '3px solid #f59e0b'
+              }}>
+                <div style={{ fontSize: '12px', fontWeight: '600', color: '#f59e0b', marginBottom: '6px' }}>
+                  📊 Referenced Tables:
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                  {msg.relevantTables.map((table, idx) => (
+                    <div key={idx} style={{ fontSize: '11px', color: '#6b7280' }}>
+                      • Table {table.number}: {table.title}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         ))}
         
@@ -258,18 +339,23 @@ function AIAssistant() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '15px', marginTop: '30px' }}>
         <div className="card" style={{ background: '#e0f2fe', border: '2px solid #0284c7', textAlign: 'center' }}>
           <BookOpen size={24} color="#0284c7" style={{ marginBottom: '8px' }} />
-          <h4 style={{ fontSize: '14px', color: '#0c4a6e', marginBottom: '5px' }}>1,087 Rules</h4>
-          <p style={{ fontSize: '12px', color: '#0c4a6e' }}>From official PDFs</p>
+          <h4 style={{ fontSize: '14px', color: '#0c4a6e', marginBottom: '5px' }}>3,776 Rules</h4>
+          <p style={{ fontSize: '12px', color: '#0c4a6e' }}>Live Database Access</p>
         </div>
         <div className="card" style={{ background: '#fef3c7', border: '2px solid #f59e0b', textAlign: 'center' }}>
           <MapPin size={24} color="#f59e0b" style={{ marginBottom: '8px' }} />
-          <h4 style={{ fontSize: '14px', color: '#92400e', marginBottom: '5px' }}>30 Districts</h4>
-          <p style={{ fontSize: '12px', color: '#92400e' }}>All Maharashtra</p>
+          <h4 style={{ fontSize: '14px', color: '#92400e', marginBottom: '5px' }}>15 Chapters</h4>
+          <p style={{ fontSize: '12px', color: '#92400e' }}>1,148 Regulations</p>
         </div>
         <div className="card" style={{ background: '#f0fdf4', border: '2px solid #10b981', textAlign: 'center' }}>
           <Calculator size={24} color="#10b981" style={{ marginBottom: '8px' }} />
           <h4 style={{ fontSize: '14px', color: '#065f46', marginBottom: '5px' }}>AI Powered</h4>
-          <p style={{ fontSize: '12px', color: '#065f46' }}>GPT-4o-mini</p>
+          <p style={{ fontSize: '12px', color: '#065f46' }}>GPT-4o-mini + RAG</p>
+        </div>
+        <div className="card" style={{ background: '#fce7f3', border: '2px solid #ec4899', textAlign: 'center' }}>
+          <Sparkles size={24} color="#ec4899" style={{ marginBottom: '8px' }} />
+          <h4 style={{ fontSize: '14px', color: '#9f1239', marginBottom: '5px' }}>182 Tables</h4>
+          <p style={{ fontSize: '12px', color: '#9f1239' }}>Extracted & Searchable</p>
         </div>
       </div>
     </div>

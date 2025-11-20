@@ -7,6 +7,12 @@ function RuleLibrary() {
   const [rules, setRules] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [error, setError] = useState(null);
+
+  // Load all rules on mount
+  React.useEffect(() => {
+    handleSearch();
+  }, []);
 
   const categories = [
     'FSI', 'Height', 'Setback', 'Parking', 'Building Requirements',
@@ -17,13 +23,15 @@ function RuleLibrary() {
 
   const handleSearch = async () => {
     setLoading(true);
+    setError(null);
     try {
       const params = { query };
       if (selectedCategory) params.category = selectedCategory;
       const response = await axios.get('/api/rules/search', { params });
       setRules(response.data);
     } catch (error) {
-      alert('Search failed: ' + error.message);
+      setError(error.response?.data?.error || error.message || 'Failed to load rules');
+      console.error('Search failed:', error);
     }
     setLoading(false);
   };
@@ -115,11 +123,57 @@ function RuleLibrary() {
         </div>
       </div>
 
-      {loading && <p>Searching...</p>}
+      {error && (
+        <div className="card" style={{ 
+          background: '#fee2e2', 
+          border: '2px solid #ef4444',
+          marginBottom: '20px'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
+            <div>
+              <strong style={{ color: '#991b1b' }}>❌ Error</strong>
+              <p style={{ color: '#991b1b', marginTop: '5px' }}>{error}</p>
+            </div>
+            <button 
+              onClick={() => setError(null)}
+              style={{ 
+                background: '#ef4444', 
+                color: 'white',
+                padding: '6px 12px',
+                border: 'none',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontSize: '12px'
+              }}
+            >
+              Dismiss
+            </button>
+          </div>
+        </div>
+      )}
 
-      {rules.length > 0 && (
-        <div style={{ marginBottom: '15px' }}>
-          <h3>Found {rules.length} rule{rules.length !== 1 ? 's' : ''}</h3>
+      {loading && (
+        <div className="card" style={{ textAlign: 'center', padding: '40px', background: '#f9fafb' }}>
+          <p style={{ color: '#666', fontSize: '16px' }}>🔍 Searching rules...</p>
+        </div>
+      )}
+
+      {!loading && rules.length > 0 && (
+        <div style={{ 
+          marginBottom: '15px', 
+          padding: '12px 20px', 
+          background: '#f0f9ff', 
+          borderRadius: '8px',
+          border: '1px solid #0284c7'
+        }}>
+          <strong style={{ color: '#0c4a6e' }}>
+            Found {rules.length} rule{rules.length !== 1 ? 's' : ''}
+          </strong>
+          {selectedCategory && (
+            <span style={{ color: '#0369a1', marginLeft: '10px' }}>
+              in {selectedCategory} category
+            </span>
+          )}
         </div>
       )}
 
@@ -170,9 +224,13 @@ function RuleLibrary() {
         ))}
       </div>
 
-      {!loading && rules.length === 0 && (query || selectedCategory) && (
+      {!loading && !error && rules.length === 0 && (
         <div className="card" style={{ textAlign: 'center', padding: '40px', background: '#f9fafb' }}>
-          <p style={{ color: '#666' }}>No rules found. Try different keywords or category.</p>
+          <p style={{ color: '#666', fontSize: '16px' }}>
+            {query || selectedCategory 
+              ? '📭 No rules found. Try different keywords or category.' 
+              : '📚 Enter a search term or select a category to find rules.'}
+          </p>
         </div>
       )}
     </div>

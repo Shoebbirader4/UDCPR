@@ -70,7 +70,11 @@ const ruleSchema = new mongoose.Schema({
   },
   applicableZones: [{
     type: String,
-    enum: ['R1', 'R2', 'R3', 'C1', 'C2', 'I1', 'I2', 'Mixed', 'Special', 'All']
+    enum: ['R1', 'R2', 'R3', 'R4', 'R-1', 'R-2', 'R-3', 'R-4',
+           'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C-1', 'C-2', 'C-3', 'C-4', 'C-5', 'C-6', 'C-7', 'C-8',
+           'I1', 'I2', 'I3', 'I-1', 'I-2', 'I-3',
+           'M1', 'M2', 'M3', 'M-1', 'M-2', 'M-3',
+           'Mixed', 'Special', 'All']
   }],
   applicableDistricts: [{
     type: String

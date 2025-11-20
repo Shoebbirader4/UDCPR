@@ -47,29 +47,6 @@ async function importUDCPRRules() {
           ? ruleData.category 
           : 'General';
 
-        // Map zone names to valid enum values
-        const zoneMapping = {
-          'Residential': 'R1',
-          'Commercial': 'C1',
-          'Industrial': 'I1',
-          'Heritage': 'Special',
-          'CRZ': 'Special',
-          'Coastal': 'Special',
-          'H1': 'Special',
-          'H2': 'Special',
-          'C3': 'C2',
-          'M1': 'Mixed',
-          'M2': 'Mixed'
-        };
-
-        let zones = ruleData.applicableZones || ['All'];
-        zones = zones.map(zone => zoneMapping[zone] || zone);
-        // Remove duplicates and ensure valid zones
-        zones = [...new Set(zones)].filter(z => 
-          ['R1', 'R2', 'R3', 'C1', 'C2', 'I1', 'I2', 'Mixed', 'Special', 'All'].includes(z)
-        );
-        if (zones.length === 0) zones = ['All'];
-
         // Create rule object
         const rule = {
           chapter: ruleData.chapter,
@@ -80,7 +57,7 @@ async function importUDCPRRules() {
           summary: ruleData.summary,
           fullText: ruleData.fullText,
           category: category,
-          applicableZones: zones,
+          applicableZones: ruleData.applicableZones || ['All'],
           isGeneral: true,
           tags: ruleData.keywords || [],
           status: 'Active'

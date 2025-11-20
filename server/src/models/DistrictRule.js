@@ -6,7 +6,7 @@ const districtRuleSchema = new mongoose.Schema({
     type: String, 
     required: true,
     enum: [
-      'Mumbai City', 'Mumbai Suburban', 'Thane', 'Palghar', 'Raigad', 'Ratnagiri', 'Sindhudurg',
+      'Mumbai', 'Mumbai City', 'Mumbai Suburban', 'Thane', 'Palghar', 'Raigad', 'Ratnagiri', 'Sindhudurg',
       'Pune', 'Satara', 'Sangli', 'Kolhapur', 'Solapur',
       'Nashik', 'Dhule', 'Nandurbar', 'Jalgaon',
       'Aurangabad', 'Jalna', 'Beed', 'Latur', 'Osmanabad', 'Nanded', 'Parbhani', 'Hingoli',
@@ -39,7 +39,8 @@ const districtRuleSchema = new mongoose.Schema({
       'Amenity', 'Environmental', 'Safety', 'Accessibility', 
       'CRZ', 'TOD', 'Affordable Housing', 'Mixed Use', 'Special Buildings',
       'Land Use', 'Zoning', 'Infrastructure', 'Social Infrastructure', 
-      'Redevelopment', 'Regularization', 'General'
+      'Redevelopment', 'Regularization', 'Building Requirements', 
+      'Structural', 'Fire Safety', 'Procedures', 'Penalties', 'General'
     ]
   },
   subCategory: String,

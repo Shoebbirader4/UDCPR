@@ -6,74 +6,76 @@
 export function calculateComprehensiveFSI(params) {
   const { district, zone, plotArea, roadWidth, landUse, floors, isTOD, hasHeritage } = params;
   
-  let baseFSI = 1.0;
+  let basicFSI = 1.0;
   let premiumFSI = 0;
   let tdrFSI = 0;
   let todFSI = 0;
   let maxFSI = 1.0;
   let notes = [];
   let calculations = [];
+  let roadBonus = 0;
 
   // Base FSI by zone and district
   if (district === 'Mumbai City' || district === 'Mumbai Suburban') {
     // Mumbai-specific FSI
     switch(zone) {
       case 'Residential':
-        baseFSI = district === 'Mumbai City' ? 1.33 : 1.0;
+        basicFSI = district === 'Mumbai City' ? 1.33 : 1.0;
         premiumFSI = 1.33;
         maxFSI = 3.0;
         notes.push(`Mumbai ${district === 'Mumbai City' ? 'Island City' : 'Suburbs'} base FSI`);
         break;
       case 'Commercial':
-        baseFSI = 2.0;
+        basicFSI = 2.0;
         premiumFSI = 2.0;
         maxFSI = 5.0;
         notes.push('Mumbai commercial FSI');
         break;
       case 'Industrial':
-        baseFSI = 1.0;
+        basicFSI = 1.0;
         maxFSI = 1.5;
         break;
       case 'Mixed':
-        baseFSI = 1.5;
+        basicFSI = 1.5;
         premiumFSI = 1.0;
         maxFSI = 3.0;
         break;
     }
   } else {
-    // Rest of Maharashtra
+    // Rest of Maharashtra (UDCPR 2020 Standard)
     switch(zone) {
       case 'Residential':
-        baseFSI = 1.0;
-        premiumFSI = 0.5;
-        maxFSI = 2.0;
+        basicFSI = 1.10;
+        premiumFSI = 0.40;
+        maxFSI = 1.5;
         break;
       case 'Commercial':
-        baseFSI = 1.5;
+        basicFSI = 1.5;
         premiumFSI = 1.0;
-        maxFSI = 3.0;
+        maxFSI = 2.5;
         break;
       case 'Industrial':
-        baseFSI = 1.0;
+        basicFSI = 1.0;
         maxFSI = 1.5;
         break;
       case 'Mixed':
-        baseFSI = 1.2;
+        basicFSI = 1.2;
         premiumFSI = 0.8;
-        maxFSI = 2.5;
+        maxFSI = 2.0;
         break;
     }
   }
 
-  calculations.push({ label: 'Base FSI', value: baseFSI, description: `${zone} zone base FSI` });
+  calculations.push({ label: 'Basic FSI', value: basicFSI, description: `${zone} zone basic FSI (free)` });
 
   // Road width bonus
   if (roadWidth >= 12) {
-    const bonus = 0.2;
-    baseFSI += bonus;
-    calculations.push({ label: 'Road Width Bonus', value: `+${bonus}`, description: 'Road width ≥ 12m' });
-    notes.push(`Road width bonus: +${bonus} FSI (road ≥ 12m)`);
+    roadBonus = 0.2;
+    calculations.push({ label: 'Road Width Bonus', value: `+${roadBonus}`, description: 'Road width ≥ 12m' });
+    notes.push(`Road width bonus: +${roadBonus} FSI (road ≥ 12m)`);
   }
+
+  const baseFSI = basicFSI + roadBonus;
 
   // TOD FSI
   if (isTOD) {
@@ -82,29 +84,56 @@ export function calculateComprehensiveFSI(params) {
     notes.push('TOD zone: Additional 1.0 FSI available');
   }
 
-  // TDR eligibility
-  if (plotArea > 1000) {
-    tdrFSI = maxFSI - baseFSI - todFSI;
-    calculations.push({ label: 'TDR Eligible', value: `Up to ${tdrFSI.toFixed(2)}`, description: 'Plot > 1000 sq.m' });
-    notes.push(`Eligible for TDR up to ${tdrFSI.toFixed(2)} FSI`);
-  }
-
   // Heritage building incentive
   if (hasHeritage) {
     const heritageBonus = 0.33;
+    todFSI += heritageBonus;
     calculations.push({ label: 'Heritage Incentive', value: `+${heritageBonus}`, description: 'Heritage conservation' });
     notes.push(`Heritage conservation incentive: +${heritageBonus} FSI`);
   }
 
   const totalPermissibleFSI = Math.min(baseFSI + todFSI, maxFSI);
+  
+  // TDR eligibility - calculate available TDR FSI
+  if (plotArea > 1000) {
+    tdrFSI = Math.max(0, maxFSI - totalPermissibleFSI);
+    if (tdrFSI > 0) {
+      calculations.push({ 
+        label: 'TDR Available', 
+        value: `${tdrFSI.toFixed(2)} FSI`, 
+        description: `Plot > 1000 sq.m, can purchase up to ${tdrFSI.toFixed(2)} FSI` 
+      });
+      notes.push(`TDR eligible: Can purchase up to ${tdrFSI.toFixed(2)} FSI to reach max ${maxFSI} FSI`);
+    }
+  }
+
+  // Premium FSI breakdown
+  if (premiumFSI > 0) {
+    calculations.push({ 
+      label: 'Premium FSI', 
+      value: `${premiumFSI} FSI`, 
+      description: 'Purchasable premium FSI (separate from basic)' 
+    });
+    notes.push(`Premium FSI: ${premiumFSI} FSI available for purchase`);
+  }
+
+  // Calculate built-up areas for different scenarios
+  const builtUpBasic = plotArea * baseFSI;
+  const builtUpWithPremium = premiumFSI > 0 ? plotArea * Math.min(baseFSI + premiumFSI, maxFSI) : 0;
+  const builtUpWithTDR = tdrFSI > 0 ? plotArea * maxFSI : 0;
 
   return {
+    basicFSI,
     baseFSI,
     premiumFSI,
     tdrFSI,
     todFSI,
+    roadBonus,
     totalPermissibleFSI,
     maxFSI,
+    builtUpBasic: parseFloat(builtUpBasic.toFixed(2)),
+    builtUpWithPremium: parseFloat(builtUpWithPremium.toFixed(2)),
+    builtUpWithTDR: parseFloat(builtUpWithTDR.toFixed(2)),
     calculations,
     notes
   };
@@ -134,12 +163,12 @@ export function calculateComprehensiveSetbacks(params) {
       notes.push('Large plot (>1000 sq.m): 6m front setback');
     }
 
-    // Road width factor
+    // Road width factor - capped at 6m to prevent unbuildable plots
     if (roadWidth >= 12) {
-      const roadFactor = roadWidth * 0.33;
+      const roadFactor = Math.min(roadWidth * 0.33, 6);
       if (roadFactor > front) {
         front = roadFactor;
-        notes.push(`Front setback increased to ${front.toFixed(1)}m (1/3 of road width)`);
+        notes.push(`Front setback: ${front.toFixed(1)}m (1/3 of road width, max 6m)`);
       }
     }
 
@@ -183,11 +212,12 @@ export function calculateComprehensiveSetbacks(params) {
       side2 = 2.5;
     }
 
+    // Road width factor - capped at 6m to prevent unbuildable plots
     if (roadWidth >= 12) {
-      const roadFactor = roadWidth * 0.3;
+      const roadFactor = Math.min(roadWidth * 0.3, 6);
       if (roadFactor > front) {
         front = roadFactor;
-        notes.push(`Front setback: ${front.toFixed(1)}m (30% of road width)`);
+        notes.push(`Front setback: ${front.toFixed(1)}m (30% of road width, max 6m)`);
       }
     }
   }
@@ -291,11 +321,12 @@ export function calculateParking(params) {
  * Calculate building height restrictions
  */
 export function calculateHeight(params) {
-  const { zone, plotArea, roadWidth, district } = params;
+  const { zone, plotArea, roadWidth, district, floors, buildingHeight } = params;
   
   let maxHeight = 15;
   let maxFloors = 4;
   let notes = [];
+  const floorHeight = 3.5; // Standard floor-to-floor height
 
   if (district === 'Mumbai City' || district === 'Mumbai Suburban') {
     switch(zone) {
@@ -343,10 +374,41 @@ export function calculateHeight(params) {
     notes.push('Large plot (>2000 sq.m): May qualify for high-rise approval');
   }
 
+  // Calculate actual/proposed height if floors provided
+  let proposedHeight = null;
+  let proposedFloors = null;
+  let isCompliant = true;
+  
+  if (floors && floors > 0) {
+    proposedFloors = parseInt(floors);
+    proposedHeight = proposedFloors * floorHeight;
+    
+    // Check compliance
+    if (proposedFloors > maxFloors) {
+      isCompliant = false;
+      notes.push(`⚠️ Proposed ${proposedFloors} floors exceeds maximum ${maxFloors} floors`);
+    }
+    if (proposedHeight > maxHeight) {
+      isCompliant = false;
+      notes.push(`⚠️ Proposed ${proposedHeight}m height exceeds maximum ${maxHeight}m`);
+    }
+  } else if (buildingHeight && buildingHeight > 0) {
+    proposedHeight = parseFloat(buildingHeight);
+    proposedFloors = Math.floor(proposedHeight / floorHeight);
+    
+    if (proposedHeight > maxHeight) {
+      isCompliant = false;
+      notes.push(`⚠️ Proposed ${proposedHeight}m height exceeds maximum ${maxHeight}m`);
+    }
+  }
+
   return {
     maxHeight,
     maxFloors,
-    floorHeight: 3.5,
+    floorHeight,
+    proposedHeight,
+    proposedFloors,
+    isCompliant,
     notes
   };
 }
@@ -374,6 +436,68 @@ export function calculateBuiltUpArea(params) {
 }
 
 /**
+ * Calculate ancillary areas (not counted in FSI)
+ */
+export function calculateAncillaryAreas(params) {
+  const { builtUpArea, floors } = params;
+  
+  const calculations = [];
+  const notes = [];
+  
+  // Staircase and lift (10% of built-up area)
+  const staircaseLift = builtUpArea * 0.10;
+  calculations.push({
+    label: 'Staircase & Lift',
+    value: `${staircaseLift.toFixed(0)} sq.m`,
+    description: '10% of built-up area (not counted in FSI)'
+  });
+  
+  // Mumty (roof structure) - typically 15 sq.m per floor
+  const mumty = floors > 0 ? 15 : 0;
+  if (mumty > 0) {
+    calculations.push({
+      label: 'Mumty (Roof Structure)',
+      value: `${mumty} sq.m`,
+      description: 'Staircase head room on terrace'
+    });
+  }
+  
+  // Water tanks - typically 2% of built-up
+  const waterTanks = builtUpArea * 0.02;
+  calculations.push({
+    label: 'Water Tanks',
+    value: `${waterTanks.toFixed(0)} sq.m`,
+    description: '2% of built-up area'
+  });
+  
+  // Meter room, ducts, shafts - 3% of built-up
+  const services = builtUpArea * 0.03;
+  calculations.push({
+    label: 'Services (Meters, Ducts)',
+    value: `${services.toFixed(0)} sq.m`,
+    description: '3% of built-up area'
+  });
+  
+  const totalAncillary = staircaseLift + mumty + waterTanks + services;
+  const totalConstructible = builtUpArea + totalAncillary;
+  
+  notes.push('Ancillary areas are NOT counted in FSI calculations');
+  notes.push('These areas are permitted in addition to FSI-based built-up area');
+  notes.push(`Total constructible area: ${totalConstructible.toFixed(0)} sq.m`);
+  
+  return {
+    staircaseLift: parseFloat(staircaseLift.toFixed(2)),
+    mumty,
+    waterTanks: parseFloat(waterTanks.toFixed(2)),
+    services: parseFloat(services.toFixed(2)),
+    totalAncillary: parseFloat(totalAncillary.toFixed(2)),
+    totalConstructible: parseFloat(totalConstructible.toFixed(2)),
+    calculations,
+    notes
+  };
+}
+
+/**
  * Comprehensive calculator - all calculations in one
  */
 export function calculateAll(params) {
@@ -381,10 +505,12 @@ export function calculateAll(params) {
   const setbackResults = calculateComprehensiveSetbacks(params);
   const heightResults = calculateHeight(params);
   
+  const actualFloors = params.floors || heightResults.maxFloors;
+  
   const builtUpResults = calculateBuiltUpArea({
     plotArea: params.plotArea,
     fsi: fsiResults.totalPermissibleFSI,
-    floors: params.floors || heightResults.maxFloors
+    floors: actualFloors
   });
   
   const parkingResults = calculateParking({
@@ -394,16 +520,24 @@ export function calculateAll(params) {
     carpetAreaPerUnit: params.carpetAreaPerUnit
   });
 
+  const ancillaryResults = calculateAncillaryAreas({
+    builtUpArea: builtUpResults.totalBuiltUp,
+    floors: actualFloors
+  });
+
   return {
     fsi: fsiResults,
     setbacks: setbackResults,
     height: heightResults,
     builtUp: builtUpResults,
     parking: parkingResults,
+    ancillary: ancillaryResults,
     summary: {
       plotArea: params.plotArea,
       permissibleFSI: fsiResults.totalPermissibleFSI,
       maxBuiltUp: builtUpResults.totalBuiltUp,
+      ancillaryArea: ancillaryResults.totalAncillary,
+      totalConstructible: ancillaryResults.totalConstructible,
       maxHeight: heightResults.maxHeight,
       maxFloors: heightResults.maxFloors,
       requiredParking: parkingResults.ecs,

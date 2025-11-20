@@ -1,0 +1,21 @@
+[
+  {
+    "chapter": "3",
+    "section": "2",
+    "clause": "3.2.1",
+    "reference": "UDCPR-2020-3.2.1",
+    "title": "Rule Title Here",
+    "summary": "Brief summary of the rule (1-2 sentences)",
+    "fullText": "Complete rule text exactly as it appears in the official UDCPR PDF",
+    "category": "FSI",
+    "subcategory": "Residential",
+    "applicableZones": ["R1", "R2", "R3"],
+    "applicableDistricts": ["All"],
+    "isGeneral": true,
+    "pdfPage": 45,
+    "verified": true,
+    "verifiedBy": "Your Name",
+    "verificationDate": "2025-11-18",
+    "notes": "Any additional notes or clarifications"
+  }
+]

@@ -12,11 +12,11 @@ function Home() {
 
   const modules = [
     { name: 'UDCPR Calculator', icon: Calculator, path: '/calculator', color: '#10b981', badge: 'Real Data', description: 'FSI, Setbacks, Parking from actual UDCPR' },
-    { name: 'Rule Library', icon: BookOpen, path: '/rules', color: '#3b82f6', badge: '3,776 Rules', description: 'Complete UDCPR & Mumbai-DCPR database' },
+    { name: 'Rule Library', icon: BookOpen, path: '/rules', color: '#3b82f6', badge: '2,878 Rules', description: 'Complete UDCPR & Mumbai-DCPR database' },
     { name: 'Regulation Browser', icon: FileText, path: '/regulations', color: '#7c3aed', badge: '15 Chapters', description: 'Browse rules by chapter & regulation number' },
-    { name: 'Table Viewer', icon: FileText, path: '/tables', color: '#059669', badge: '182 Tables', description: 'Browse all extracted tables (3A, 6B, 7A, etc.)' },
-    { name: 'District Rules', icon: MapPin, path: '/district-rules', color: '#ef4444', badge: '173 Mumbai', description: 'Mumbai-specific regulations' },
-    { name: 'AI Assistant', icon: Bot, path: '/ai-assistant', color: '#8b5cf6', badge: 'GPT-4o', description: 'Query 3,776 rules with AI' },
+    { name: 'Table Viewer', icon: FileText, path: '/tables', color: '#059669', badge: '410 Tables', description: 'Browse all extracted tables (3A, 6B, 7A, etc.)' },
+    { name: 'District Rules', icon: MapPin, path: '/district-rules', color: '#ef4444', badge: '231 Rules', description: 'District-specific regulations (23 districts)' },
+    { name: 'AI Assistant', icon: Bot, path: '/ai-assistant', color: '#8b5cf6', badge: 'GPT-4o', description: 'Query 2,878 rules with AI' },
     { name: 'AI Compliance Check', icon: CheckCircle, path: '/compliance', color: '#f59e0b', badge: 'GPT-4 Vision', description: 'Auto-analyze drawings with AI' },
     { name: 'Zone Finder', icon: MapPin, path: '/zone-finder', color: '#06b6d4', badge: 'GIS', description: 'Find zone information' },
     { name: 'My Projects', icon: FileText, path: '/projects', color: '#ec4899', badge: 'Save', description: 'Manage your projects' }
@@ -37,16 +37,16 @@ function Home() {
           </p>
           <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginTop: '20px', flexWrap: 'wrap' }}>
             <span style={{ background: '#e0f2fe', padding: '8px 16px', borderRadius: '20px', fontSize: '13px', fontWeight: '500', color: '#0369a1' }}>
-              ✅ 3,776 Total Rules
+              ✅ 2,878 Total Rules
             </span>
             <span style={{ background: '#fef3c7', padding: '8px 16px', borderRadius: '20px', fontSize: '13px', fontWeight: '500', color: '#92400e' }}>
-              ✅ 182 Tables Extracted
+              ✅ 410 Tables Extracted
             </span>
             <span style={{ background: '#d1fae5', padding: '8px 16px', borderRadius: '20px', fontSize: '13px', fontWeight: '500', color: '#065f46' }}>
               ✅ 100% Real DOCX Data
             </span>
             <span style={{ background: '#fce7f3', padding: '8px 16px', borderRadius: '20px', fontSize: '13px', fontWeight: '500', color: '#9f1239' }}>
-              ✅ No Mocked Data
+              ✅ 23 Districts Covered
             </span>
           </div>
         </div>
@@ -111,20 +111,20 @@ function Home() {
           marginBottom: '40px'
         }}>
           <div className="card" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', textAlign: 'center' }}>
-            <h2 style={{ fontSize: '36px', marginBottom: '5px', color: 'white' }}>3,776</h2>
+            <h2 style={{ fontSize: '36px', marginBottom: '5px', color: 'white' }}>2,878</h2>
             <p style={{ fontSize: '14px', opacity: 0.9 }}>Total Rules (DOCX)</p>
           </div>
           <div className="card" style={{ background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', color: 'white', textAlign: 'center' }}>
-            <h2 style={{ fontSize: '36px', marginBottom: '5px', color: 'white' }}>182</h2>
+            <h2 style={{ fontSize: '36px', marginBottom: '5px', color: 'white' }}>410</h2>
             <p style={{ fontSize: '14px', opacity: 0.9 }}>Tables Extracted</p>
           </div>
           <div className="card" style={{ background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)', color: 'white', textAlign: 'center' }}>
-            <h2 style={{ fontSize: '36px', marginBottom: '5px', color: 'white' }}>15</h2>
-            <p style={{ fontSize: '14px', opacity: 0.9 }}>UDCPR Chapters</p>
+            <h2 style={{ fontSize: '36px', marginBottom: '5px', color: 'white' }}>23</h2>
+            <p style={{ fontSize: '14px', opacity: 0.9 }}>Districts Covered</p>
           </div>
           <div className="card" style={{ background: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)', color: 'white', textAlign: 'center' }}>
-            <h2 style={{ fontSize: '36px', marginBottom: '5px', color: 'white' }}>100%</h2>
-            <p style={{ fontSize: '14px', opacity: 0.9 }}>Real Data</p>
+            <h2 style={{ fontSize: '36px', marginBottom: '5px', color: 'white' }}>27</h2>
+            <p style={{ fontSize: '14px', opacity: 0.9 }}>Categories</p>
           </div>
         </div>
 
@@ -177,27 +177,27 @@ function Home() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '15px', fontSize: '13px', color: '#065f46' }}>
             <div>
               <strong>UDCPR (Maharashtra):</strong>
-              <p style={{ marginTop: '5px' }}>• 3,603 rules extracted</p>
-              <p>• 116 tables (3A, 6B, 7A, etc.)</p>
+              <p style={{ marginTop: '5px' }}>• 1,582 rules extracted</p>
+              <p>• 190 tables (FSI, parking, etc.)</p>
               <p><strong>100% from DOCX</strong></p>
             </div>
             <div>
               <strong>Mumbai-DCPR:</strong>
-              <p style={{ marginTop: '5px' }}>• 173 Mumbai-specific rules</p>
-              <p>• 66 Mumbai tables</p>
+              <p style={{ marginTop: '5px' }}>• 1,234 rules extracted</p>
+              <p>• 220 Mumbai tables</p>
               <p><strong>Complete coverage</strong></p>
             </div>
             <div>
               <strong>Top Categories:</strong>
-              <p style={{ marginTop: '5px' }}>• FSI: 1,121 rules</p>
-              <p>• Environmental: 631 rules</p>
-              <p>• Structural: 354 rules</p>
+              <p style={{ marginTop: '5px' }}>• FSI: 488 rules</p>
+              <p>• Height: 273 rules</p>
+              <p>• Land Use: 274 rules</p>
             </div>
             <div>
               <strong>Data Quality:</strong>
               <p style={{ marginTop: '5px' }}>• Source: Official DOCX</p>
-              <p>• Accuracy: 100%</p>
-              <p>• No mocked data</p>
+              <p>• Extracted: 2,878 rules</p>
+              <p>• 23 districts covered</p>
             </div>
           </div>
         </div>

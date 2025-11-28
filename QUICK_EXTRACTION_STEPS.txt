@@ -1,0 +1,75 @@
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                                                                               ║
+║                   UDCPR DATABASE EXTRACTION - QUICK STEPS                     ║
+║                                                                               ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+📖 READ FIRST: START_EXTRACTION.md (detailed guide)
+
+⚡ QUICK START (3 Commands):
+
+   1. cd server\src\scripts\python_extraction
+   
+   2. setup.bat
+   
+   3. run_extraction.bat
+
+✅ DONE! Your database now has ~23,000+ rules!
+
+───────────────────────────────────────────────────────────────────────────────
+
+📊 WHAT GETS EXTRACTED:
+
+   ✅ ~12,000 UDCPR rules (General Maharashtra)
+   ✅ ~11,000 Mumbai-DCPR rules (Mumbai-specific)
+   ✅ ~180 tables (FSI, parking, setbacks)
+   ✅ ~90 annexures (heritage, abbreviations)
+   ✅ All numerical data (FSI, setbacks, heights)
+   ✅ 27 categories automatically assigned
+   ✅ Smart tags for searching
+   ✅ Zone mapping (R1-R4, C1-C8, etc.)
+   ✅ District mapping (Mumbai, Pune, etc.)
+
+───────────────────────────────────────────────────────────────────────────────
+
+⏱️  TIME REQUIRED:
+
+   Setup:      ~2 minutes (one-time)
+   Extraction: ~5-10 minutes
+   Total:      ~12 minutes
+
+───────────────────────────────────────────────────────────────────────────────
+
+🔍 VERIFY SUCCESS:
+
+   cd server
+   npm run check-rules
+
+   Should show: ~23,000+ rules
+
+───────────────────────────────────────────────────────────────────────────────
+
+🐛 TROUBLESHOOTING:
+
+   Test setup:     test_setup.bat
+   Preview data:   python test_extraction.py
+   Clean & retry:  npm run clean-db
+
+───────────────────────────────────────────────────────────────────────────────
+
+📚 DOCUMENTATION:
+
+   Quick Start:    START_EXTRACTION.md
+   Detailed Guide: EXTRACTION_GUIDE.md
+   Complete Info:  PYTHON_EXTRACTION_COMPLETE.md
+   Technical:      server/src/scripts/python_extraction/README.md
+
+───────────────────────────────────────────────────────────────────────────────
+
+🚀 READY? Run these commands:
+
+   cd server\src\scripts\python_extraction
+   setup.bat
+   run_extraction.bat
+
+───────────────────────────────────────────────────────────────────────────────

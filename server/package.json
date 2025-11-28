@@ -16,7 +16,9 @@
     "import-all-categories": "node src/scripts/importAllCategories.js",
     "seed-all-categories": "node src/scripts/seedAllCategories.js",
     "seed-mumbai-comprehensive": "node src/scripts/seedMumbaiComprehensive.js",
-    "check-rules": "node src/scripts/checkCurrentRules.js"
+    "check-rules": "node src/scripts/checkCurrentRules.js",
+    "clean-db": "node src/scripts/cleanDatabaseComplete.js",
+    "clean-db-all": "node src/scripts/cleanDatabaseComplete.js --all"
   },
   "dependencies": {
     "cors": "^2.8.5",

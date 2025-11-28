@@ -41,20 +41,20 @@ function RuleLibrary() {
       <div style={{ marginBottom: '30px' }}>
         <h1 style={{ marginBottom: '10px' }}>UDCPR Rule Library</h1>
         <p style={{ color: '#666', marginBottom: '15px' }}>
-          Complete UDCPR 2020 regulations - Mumbai & Rest of Maharashtra
+          Complete UDCPR 2020 regulations - Extracted from official DOCX files
         </p>
         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
           <span style={{ background: '#e0e7ff', padding: '6px 14px', borderRadius: '20px', fontSize: '13px', fontWeight: '500' }}>
-            📋 1,640 General Rules
+            📋 2,647 General Rules
           </span>
           <span style={{ background: '#fef3c7', padding: '6px 14px', borderRadius: '20px', fontSize: '13px', fontWeight: '500' }}>
-            📍 Mumbai: 698 rules
+            📍 231 District Rules
           </span>
           <span style={{ background: '#d1fae5', padding: '6px 14px', borderRadius: '20px', fontSize: '13px', fontWeight: '500' }}>
-            📍 Rest Maharashtra: 942 rules
+            🗺️ 23 Districts
           </span>
           <span style={{ background: '#e0f2fe', padding: '6px 14px', borderRadius: '20px', fontSize: '13px', fontWeight: '500' }}>
-            ✅ 19 Categories
+            ✅ 27 Categories
           </span>
         </div>
       </div>
@@ -106,20 +106,20 @@ function RuleLibrary() {
       </div>
 
       <div className="card" style={{ background: '#f0fdf4', border: '2px solid #10b981', marginBottom: '20px' }}>
-        <h4 style={{ color: '#065f46', marginBottom: '10px' }}>📚 Complete UDCPR 2020 Coverage</h4>
+        <h4 style={{ color: '#065f46', marginBottom: '10px' }}>📚 Complete UDCPR 2020 Coverage (Extracted from DOCX)</h4>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '10px', fontSize: '13px', color: '#065f46' }}>
-          <div><strong>FSI:</strong> 467 rules</div>
-          <div><strong>Height:</strong> 202 rules</div>
-          <div><strong>Setback:</strong> 137 rules</div>
-          <div><strong>Procedures:</strong> 135 rules</div>
-          <div><strong>Building Req:</strong> 83 rules</div>
-          <div><strong>Affordable Housing:</strong> 68 rules</div>
-          <div><strong>Structural:</strong> 55 rules</div>
-          <div><strong>Parking:</strong> 52 rules</div>
-          <div><strong>Amenity:</strong> 52 rules</div>
-          <div><strong>Fire Safety:</strong> 45 rules</div>
-          <div><strong>Environmental:</strong> 41 rules</div>
-          <div><strong>Redevelopment:</strong> 33 rules</div>
+          <div><strong>FSI:</strong> 488 rules</div>
+          <div><strong>General:</strong> 291 rules</div>
+          <div><strong>Land Use:</strong> 274 rules</div>
+          <div><strong>Height:</strong> 273 rules</div>
+          <div><strong>Redevelopment:</strong> 213 rules</div>
+          <div><strong>Parking:</strong> 181 rules</div>
+          <div><strong>Setback:</strong> 147 rules</div>
+          <div><strong>Procedures:</strong> 139 rules</div>
+          <div><strong>Amenity:</strong> 126 rules</div>
+          <div><strong>Safety:</strong> 103 rules</div>
+          <div><strong>Infrastructure:</strong> 104 rules</div>
+          <div><strong>Affordable Housing:</strong> 87 rules</div>
         </div>
       </div>
 
